@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>员工列表</title>
+</head>
+
+<style rel="stylesheet">
+  table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+  }
+
+  th,td {
+    border: 1px solid black;
+  }
+</style>
+<script type="text/javascript" th:src="@{/static/js/vue.js}"></script>
+<script type="text/javascript" th:src="@{/static/js/axios.min.js}"></script>
+<body>
+    <div id="app">
+      <table>
+        <tr>
+          <th colspan="5">员工信息表</th>
+        </tr>
+        <tr>
+          <th>工号</th>
+          <th>姓名</th>
+          <th>性别</th>
+          <th>级别</th>
+          <th>操作</th>
+        </tr>
+        <tr th:each="employee : ${employees}">
+          <td th:text="${employee.eid}"></td>
+          <td th:text="${employee.userName}"></td>
+          <td th:text="${employee.gender == 1 ? '男' : '女'}"></td>
+          <td th:text="${employee.level}"></td>
+          <td>
+              <!--vue与thymeleaf结合使用，|| 作为拼接字符串，${}可以解析-->
+            <a  @click="deleteUser" th:href="@{'/employee/' + ${employee.eid}}">删除</a>
+            <a th:href="@{'/goEmployeeUpdate/' + ${employee.eid}}">修改</a>
+          </td>
+        </tr>
+      </table>
+
+        <form id="deleteForm" method="post">
+            <input type="hidden" name="_method" value="delete">
+        </form>
+
+      <a th:href="@{/goEmployee}"> 返回到操作页面>> </a>
+    </div>
+
+
+    <script type="text/javascript">
+        let vue = new Vue({
+            el:'#app',
+            methods: {
+              deleteUser: function (event) {
+                  let form = document.getElementById("deleteForm");
+                  form.action = event.target.href;
+                  form.submit();
+                  // 取消超链接默认行为
+                  event.preventDefault();
+              }
+            }
+        });
+    </script>
+</body>
+</html>

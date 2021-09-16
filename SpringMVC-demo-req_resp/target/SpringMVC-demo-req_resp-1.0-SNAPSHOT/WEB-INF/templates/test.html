@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>测试页面</title>
+</head>
+<body>
+    <form th:action="@{/testRequestBody}" method="post">
+        姓名：<input type="text" name="name"/><br>
+        密码：<input type="password" name="password"/><br>
+        <input type="submit">
+    </form>
+
+    <form th:action="@{/testRequestEntity}" method="post">
+        姓名：<input type="text" name="name"/><br>
+        密码：<input type="password" name="password"/><br>
+        <input type="submit">
+    </form>
+
+    <form th:action="@{/testResponseBody}" method="post">
+        名称：<input type="text" name="name"/><br>
+        地址：<input type="text" name="addr"/><br>
+        <input type="submit">
+    </form>
+
+    <a th:href="@{/testDownFile(srcPath='/static/picture/a.png',downloadFileName='down.png')}">下载图片</a>
+    <a th:href="@{/testDownFile(srcPath='/static/video/a.mp4',downloadFileName='down.mp4')}">下载视频</a>
+    <a th:href="@{/testDownFile(srcPath='/static/music/a.mp3',downloadFileName='down.mp3')}">下载音乐</a>
+
+    <br>
+    <form th:action="@{/testUpload}" method="post" enctype="multipart/form-data">
+        <input type="file" name="file"><br>
+        <input type="submit" value="上传文件">
+    </form>
+</body>
+</html>
