@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="SpringMVC-demo-req_resp:war">
+    <output-path>$PROJECT_DIR$/SpringMVC-demo-req_resp/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>SpringMVC-demo-req_resp</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="SpringMVC-demo-req_resp-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="SpringMVC-demo-req_resp:war exploded" />
+    </root>
+  </artifact>
+</component>
